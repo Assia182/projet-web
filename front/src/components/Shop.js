@@ -4,10 +4,11 @@ import Main from './Main';
 import Basket from './Basket';
 import NavBar from './Navbar';
 
-function Shop({countCartItems, products, onAdd, cartItems, onRemove}) {
+function Shop({countCartItems, products, onAdd, cartItems, onRemove, currentUser}) {
   return (
       <div>
-        <NavBar />
+        
+        <NavBar currentUser={currentUser}/>
         <Header countCartItems={countCartItems}></Header>
         <div className="row">
           <Main products={products} onAdd={onAdd}></Main>

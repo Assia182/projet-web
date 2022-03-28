@@ -23,8 +23,7 @@ export default function Main(props) {
   return (
 
     <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <Grid container justify="center" spacing={4}>
+      <Grid container justify="center" xs={10} spacing={1}>
         {products && products.map((product) => (
           <Grid key={product.idProduct} item xs={12} sm={6} md={4} lg={3}>
             <Product key={product.idProduct} product={product} onAdd={onAdd} />

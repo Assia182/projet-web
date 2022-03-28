@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 
 
 
-function HandleReservations() {
+function HandleReservations({currentUser}) {
 
     const [reservations, setReservations] = React.useState();
 

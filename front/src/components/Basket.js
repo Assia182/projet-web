@@ -1,8 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import './Basket.css';
 
 export default function Basket(props) {
+
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  React.useEffect(() => {
+    axios.get('http://localhost:8000/users/current-user', { withCredentials: true })
+    .then(response =>{
+      setCurrentUser(response.data)
+      console.log(response.data)
+    }).catch((e) => console.log(e.request))
+  }, []);
+
+  
   let navigate = useNavigate();
   const { cartItems, onAdd, onRemove } = props;
   const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.priceProduct, 0);
@@ -22,7 +35,8 @@ export default function Basket(props) {
       data: {
         dateReservation : today,
         retrieveDate : retrieveDate,
-        userEmailUser : "assia@live.fr"
+        userEmailUser : currentUser && currentUser.emailUser,
+        reservationStateNameReservationState : 'En attente'
       },
       withCredentials : true
     }).then(()=>{
@@ -32,7 +46,7 @@ export default function Basket(props) {
   }
 
   return (
-    <aside className="block col-1">
+    <aside className="aside">
       <h2>Produit(s) du panier</h2>
       <div>
         {cartItems.length === 0 && <div>Panier vide</div>}

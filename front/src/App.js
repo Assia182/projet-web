@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
 import Shop from './components/Shop'
 import {
   BrowserRouter as Router,
@@ -8,12 +9,22 @@ import {
 import axios from 'axios'
 import ConfirmationReservation from './components/ConfirmationReservation';
 import HandleReservations from './components/HandleReservations';
-import HandleProduits from './components/HandleProducts';
 import Login from './components/Login'
+import Admin from './components/Admin';
 
 function App() {
   const [products, setProducts] = useState();
   const [cartItems, setCartItems] = useState([]);
+
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  React.useEffect(() => {
+    axios.get('http://localhost:8000/users/current-user', { withCredentials: true })
+    .then(response =>{
+      setCurrentUser(response.data)
+      console.log(response.data)
+    }).catch((e) => console.log(e.request))
+  }, []);
   
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.idProduct === product.idProduct);
@@ -58,17 +69,30 @@ function App() {
 
         <Route path="/" element={ <Login />} />
 
+        { currentUser && currentUser.isAdmin === false &&
         <Route path="/accueil" element={
         
-          <Shop countCartItems={cartItems.length} products={products} onAdd={onAdd} cartItems={cartItems} onRemove={onRemove} />
+          <Shop countCartItems={cartItems.length} products={products} onAdd={onAdd} cartItems={cartItems} onRemove={onRemove} currentUser={currentUser}/>
 
         } />
+        }
 
-        <Route path="/confirmation" element={ <ConfirmationReservation />} />
+        { currentUser && currentUser.isAdmin === false &&
+          <Route path="/confirmation" element={ <ConfirmationReservation currentUser={currentUser}/>} />
+        }
 
-        <Route path="/liste/reservations" element={ <HandleReservations />} />
+        { currentUser && currentUser.isAdmin === true &&
+        <Route path="/accueil" element={
+        
+         <Admin />
 
-        <Route path="/liste/produits" element={ <HandleProduits />} />
+        } />
+        }
+        
+
+        { currentUser && currentUser.isAdmin === true &&
+          <Route path="/liste/reservations" element={ <HandleReservations currentUser={currentUser}/>} />
+        }
 
 
       </Routes>

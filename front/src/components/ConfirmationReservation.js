@@ -1,10 +1,16 @@
 import React from 'react'
 
-function ConfirmationReservation() {
+function ConfirmationReservation({currentUser}) {
   return (
     <div>
-        <p>Votre réservation a été effectuée</p>
+        <div>
+        <h2 style={{textAlign: "center"}}>Réservation confirmée</h2>
+        <p style={{textAlign: "center"}}>
         <a href="/accueil">Retourner à la boutique</a>
+        </p>
+        
+      </div>
+        
     </div>
   )
 }

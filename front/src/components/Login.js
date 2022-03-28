@@ -50,7 +50,7 @@ const Login = () =>{
     return(
         <Grid >
             <Paper  style={paperStyle}>
-                <Grid align='center'>
+                <Grid align='center' justify='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Se connecter</h2>
                 </Grid>
@@ -58,11 +58,6 @@ const Login = () =>{
                 <TextField id="password" name="password" label='Mot de passe' placeholder='Entrer un mot de passe' onChange={handleChange} type='password' fullWidth required/>
                 <Button type='submit' onClick={onSubmit} color='inherit' variant="contained" style={btnstyle} fullWidth>Se connecter</Button>
                 <Typography >
-                </Typography>
-                <Typography > Avez-vous un compte ?
-                    {/* <Link href="./signup"  >
-                        S'inscrire
-                    </Link> */}
                 </Typography>
             </Paper>
         </Grid>
