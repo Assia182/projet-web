@@ -33,7 +33,7 @@ const Login = () =>{
         axios({
             method: "POST",
             mode : 'cors',
-            url: "http://localhost:8000/users/sign-in",
+            url: "/users/sign-in",
             data: {
               emailUser : email,
               passwordUser : password
@@ -48,7 +48,7 @@ const Login = () =>{
 
 
     return(
-        <Grid >
+        <Grid align='center' justify='center'>
             <Paper  style={paperStyle}>
                 <Grid align='center' justify='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>

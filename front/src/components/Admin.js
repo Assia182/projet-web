@@ -1,25 +1,35 @@
 import React from 'react'
 import NavBar from './Navbar';
-import axios from 'axios'
-import Box from '@mui/material/Box';
+import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 
 function Admin() {
   const [currentUser, setCurrentUser] = React.useState({});
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  let navigate = useNavigate();
+
+  function goToReservations(){
+    navigate("/liste/reservations");
+  }
+
+  function disconnect(){
+    axios({
+        method: "POST",
+        mode : 'cors',
+        url: "/users/logout",
+        withCredentials : true
+      }).then(()=>{
+        navigate("/");
+      })
+}
 
   React.useEffect(() => {
-    axios.get('http://localhost:8000/users/current-user', { withCredentials: true })
+    axios.get('/users/current-user', { withCredentials: true })
     .then(response =>{
       setCurrentUser(response.data)
       console.log(response.data)
@@ -28,7 +38,7 @@ function Admin() {
   
   return (
     <div>
-        <NavBar currentUser={currentUser}/>
+        <NavBar disconnect={disconnect}/>
         <br/>
         <br/>
         <br/>
@@ -37,20 +47,13 @@ function Admin() {
         <br/>
         <br/>
         <br/>
-        <Stack direction="row" justifyContent="center" alignItems="center" style={{ width: '100%'}} pt={3} mb={5}>
-        <Box
-        justify="center"
-        sx={{
-          width: 300,
-          height: 300,
-          backgroundColor: 'primary.dark',
-          '&:hover': {
-            backgroundColor: 'primary.main',
-            opacity: [0.9, 0.8, 0.7],
-          },
-        }}
-      ><a href="liste/reservations">Gérer les réservations</a></Box>
-        
+        <Stack direction="row" justifyContent="center" alignItems="center">
+          <Button variant="contained" onClick={goToReservations} style={{
+                  borderRadius: 35,
+                  backgroundColor: "#D6C29A",
+                  padding: "18px 36px",
+                  fontSize: "18px"
+              }}>Gérer les réservations</Button>
         </Stack>
     </div>
   )

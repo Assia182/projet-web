@@ -2,20 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './Basket.css';
+import {Typography } from '@material-ui/core';
+import useStyles from './styles';
 
 export default function Basket(props) {
 
   const [currentUser, setCurrentUser] = React.useState({});
 
   React.useEffect(() => {
-    axios.get('http://localhost:8000/users/current-user', { withCredentials: true })
-    .then(response =>{
+    axios.get('/users/current-user', { withCredentials: true })
+    .then((response) =>{
       setCurrentUser(response.data)
-      console.log(response.data)
     }).catch((e) => console.log(e.request))
   }, []);
 
-  
+  const classes = useStyles();
   let navigate = useNavigate();
   const { cartItems, onAdd, onRemove } = props;
   const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.priceProduct, 0);
@@ -31,7 +32,7 @@ export default function Basket(props) {
     axios({
       method: "POST",
       mode : 'cors',
-      url: "http://localhost:8000/reservations/create",
+      url: "/reservations/create",
       data: {
         dateReservation : today,
         retrieveDate : retrieveDate,
@@ -47,7 +48,9 @@ export default function Basket(props) {
 
   return (
     <aside className="aside">
-      <h2>Produit(s) du panier</h2>
+      <Typography  variant="h6" className={classes.title} color="inherit">
+         Produit(s) du panier
+          </Typography>
       <div>
         {cartItems.length === 0 && <div>Panier vide</div>}
         {cartItems.map((item) => (
