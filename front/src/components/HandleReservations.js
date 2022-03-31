@@ -37,17 +37,18 @@ function HandleReservations() {
 
     const [currentId, setCurrentId] = React.useState();
 
-    function handleAttente(){
+    async function handleAttente(){
 
-      axios.patch('http://localhost:8000/reservations/' + currentId, {
+      axios.patch('http://localhost:8000/reservations/' + 28, {
         reservationStateNameReservationState : 'En attente'
       })
       .then((res) => console.log("res.data"))
     }
 
-    function handleTerminee(){
+    async function handleTerminee(){
 
-      axios.patch('http://localhost:8000/reservations/' + currentId, {
+      console.log("in")
+      await axios.patch('http://localhost:8000/reservations/' + 28, {
         reservationStateNameReservationState: 'Terminée'
       })
       .then((res) => console.log("res.data"))
@@ -110,7 +111,7 @@ React.useEffect(() => {
           defaultValue={reservation.reservationStateNameReservationState}
         >
           <option value={"En attente"} onClick={()=>setCurrentId(reservation.idReservation), ()=>handleAttente}>En attente</option>
-          <option value={"Terminée"} onClick={()=>setCurrentId(reservation.idReservation), ()=>handleTerminee}>Terminée</option>
+          <option value={"Terminée"} onClick={()=>handleTerminee}>Terminée</option>
         </NativeSelect>
       </FormControl>
     </Box></TableCell>

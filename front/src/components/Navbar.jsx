@@ -27,15 +27,14 @@ const PrimarySearchAppBar = ({ totalItems , disconnect}) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
+        <Typography component={Link} to="/accueil" variant="h6" className={classes.title} color="inherit">
+            <img src={logo} alt="commerce.js" height="75px" className={classes.image} />
+          </Typography> 
            <Typography  variant="h6" className={classes.title} color="inherit">
-              ~ Bienvenue {currentUser && currentUser.nameUser} ~
+               ~ Bienvenue {currentUser && currentUser.nameUser} ~
           </Typography>
           
           <div className={classes.grow} />
-          <Typography component={Link} to="/accueil" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="commerce.js" height="75px" className={classes.image} />
-          </Typography> 
-            
         </Toolbar>
 
         <IconButton onClick={disconnect}>

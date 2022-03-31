@@ -40,14 +40,14 @@ const [currentUser, setCurrentUser] = React.useState({});
         <NavBar currentUser={currentUser} disconnect={disconnect}/>
         {currentUser && currentUser.isAdmin === true && 
         <Admin></Admin>}
-        <Stack alignItems="center" style={{ width: '100%'}} pt={15} mb={5}>
-          <Main products={products} onAdd={onAdd}></Main>
-          <Basket
+        <Stack align="center" justifyContent="center">
+        <Basket
             cartItems={cartItems}
             onAdd={onAdd}
             onRemove={onRemove}
           />
-        </Stack>
+          <Main products={products} onAdd={onAdd}></Main>
+          </Stack>
       </div>
   )
 }

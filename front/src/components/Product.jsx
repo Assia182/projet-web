@@ -32,9 +32,7 @@ export default function Product(props) {
           <Typography gutterBottom variant="h5" component="h2">
             {product.priceProduct} €
           </Typography>
-          <IconButton style={{
-                  backgroundColor: "#D6C29A"
-              }} component="span" onClick={() => onAdd(product)}>
+          <IconButton component="span" onClick={() => onAdd(product)}>
             <AddShoppingCartIcon />
           </IconButton>
         </div>

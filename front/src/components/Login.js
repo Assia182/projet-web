@@ -5,8 +5,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const Login = () =>{
-    const paperStyle={padding :20,height:'73vh',width:300, margin:"20 auto"}
-    const avatarStyle={backgroundColor:'#1bbd7e'}
+    const paperStyle={padding :200,height:59,width:300, margin:"20 auto", borderRadius: "30px", marginTop: 100}
+    const avatarStyle={backgroundColor:'#B0A58E'}
     const btnstyle={margin:'8px 0'}
 
     let navigate = useNavigate();
@@ -53,12 +53,11 @@ const Login = () =>{
                 <Grid align='center' justify='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Se connecter</h2>
-                </Grid>
-                <TextField id="email" name="email" label="Adresse Email" placeholder="Entre un email" onChange={handleChange} fullWidth required/>
+                    <TextField id="email" name="email" label="Adresse Email" placeholder="Entre un email" onChange={handleChange} fullWidth required/>
                 <TextField id="password" name="password" label='Mot de passe' placeholder='Entrer un mot de passe' onChange={handleChange} type='password' fullWidth required/>
                 <Button type='submit' onClick={onSubmit} color='inherit' variant="contained" style={btnstyle} fullWidth>Se connecter</Button>
-                <Typography >
-                </Typography>
+                </Grid>
+               
             </Paper>
         </Grid>
     )

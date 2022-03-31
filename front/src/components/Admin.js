@@ -50,7 +50,7 @@ function Admin() {
         <Stack direction="row" justifyContent="center" alignItems="center">
           <Button variant="contained" onClick={goToReservations} style={{
                   borderRadius: 35,
-                  backgroundColor: "#D6C29A",
+                  backgroundColor: "black",
                   padding: "18px 36px",
                   fontSize: "18px"
               }}>Gérer les réservations</Button>
