@@ -40,7 +40,7 @@ export default function Basket(props) {
         reservationStateNameReservationState : 'En attente'
       },
       withCredentials : true
-    }).then(()=>{
+    }).then((res)=> alert("Êtes-vous sûr(e) de vouloir confirmer votre réservation ?")).then(()=>{
       navigate("/confirmation");
     })
 
@@ -49,8 +49,8 @@ export default function Basket(props) {
   return (
     <aside className="aside">
       <Typography  variant="h6" className={classes.title} color="inherit">
-         Produit(s) du panier
-          </Typography>
+        Produit(s) du panier
+      </Typography>
       <div>
         {cartItems.length === 0 && <div>Panier vide</div>}
         {cartItems.map((item) => (

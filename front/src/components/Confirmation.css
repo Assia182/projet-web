@@ -1,0 +1,9 @@
+.photo {
+  height: 200px;
+  width: 200px;
+  text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
