@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Admin from './Admin';
 import Stack from '@mui/material/Stack';
+import Blank from './Blank';
 
 
 function Shop({countCartItems, products, onAdd, cartItems, onRemove}) {
@@ -40,6 +41,8 @@ const [currentUser, setCurrentUser] = React.useState({});
         <NavBar currentUser={currentUser} disconnect={disconnect}/>
         {currentUser && currentUser.isAdmin === true && 
         <Admin></Admin>}
+        {currentUser && currentUser.isAdmin === false ? <Blank /> : null}
+
         <Stack align="center" justifyContent="center">
         <Basket
             cartItems={cartItems}
